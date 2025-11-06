@@ -75,10 +75,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <head>
         {/* Favicons - cache busted for updated logo */}
-        <link rel="icon" href="/logo/favicon.ico?v=3" sizes="any" />
-        <link rel="icon" type="image/svg+xml" href="/logo/3dghar-logo.svg?v=3" />
-        <link rel="icon" type="image/png" sizes="96x96" href="/logo/favicon-96x96.png?v=3" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/logo/apple-touch-icon.png?v=3" />
+        <link rel="icon" href="/logo/favicon.ico?v=4" sizes="any" />
+        <link rel="icon" type="image/svg+xml" href="/logo/3dghar-logo.svg?v=4" />
+        <link rel="icon" type="image/png" sizes="96x96" href="/logo/favicon-96x96.png?v=4" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/logo/apple-touch-icon.png?v=4" />
         
         {/* PWA Manifest */}
         <link rel="manifest" href="/logo/site.webmanifest" />

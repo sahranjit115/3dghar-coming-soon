@@ -288,7 +288,7 @@ export default function ComingSoonPage() {
               whileHover={{ scale: 1.05 }}
             >
               <img
-                src="/logo/3dghar-logo.svg?v=3"
+                src="/logo/3dghar-logo.svg?v=4"
                 alt="3DGhar Logo"
                 className="h-32 md:h-40 w-auto mx-auto drop-shadow-2xl"
               />
@@ -584,7 +584,7 @@ export default function ComingSoonPage() {
             <p className="text-muted-foreground mb-6">@3DGharOfficial</p>
             <div className="flex items-center justify-center gap-4 flex-wrap">
               {[
-                { icon: Facebook, href: '#', label: 'Facebook' },
+                { icon: Facebook, href: 'https://www.facebook.com/3dghar/', label: 'Facebook' },
                 { icon: TikTok, href: '#', label: 'TikTok' },
                 { icon: Youtube, href: '#', label: 'YouTube' },
                 { icon: Instagram, href: '#', label: 'Instagram' }
