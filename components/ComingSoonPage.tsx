@@ -113,6 +113,33 @@ export default function ComingSoonPage() {
 
   // Launch date: January 1, 2026
   const launchDate = new Date('2026-01-01T00:00:00')
+  const currentYear = new Date().getFullYear()
+
+  // 3D Tour Configuration
+  // Default Kuula tour URL (can be overridden via environment variable)
+  const defaultTourUrl = 'https://kuula.co/share/hzcrM'
+  // Enable tour demo by default (can be disabled via NEXT_PUBLIC_SHOW_TOUR_DEMO=false)
+  const showTourDemo = process.env.NEXT_PUBLIC_SHOW_TOUR_DEMO !== 'false'
+  
+  // Get tour URL and add slow auto-rotation for Kuula tours
+  let tourEmbedUrl = process.env.NEXT_PUBLIC_TOUR_EMBED_URL || defaultTourUrl
+  
+  // Add slow auto-rotation parameters for Kuula tours to make it slowly rotate
+  // This helps users understand it's an interactive 3D tour
+  if (tourEmbedUrl.includes('kuula.co')) {
+    try {
+      const url = new URL(tourEmbedUrl)
+      // Add slow auto-rotation parameters (30 seconds per full rotation)
+      url.searchParams.set('autorotate', '1') // Enable auto-rotation
+      url.searchParams.set('autorotatetime', '30') // Slow rotation: 30 seconds per full rotation
+      url.searchParams.set('autorotatedelay', '2') // 2 second delay before starting
+      url.searchParams.set('autorotatedir', '1') // Direction: 1 = right (clockwise)
+      tourEmbedUrl = url.toString()
+    } catch (error) {
+      // If URL parsing fails, use the original URL
+      console.warn('Failed to add auto-rotation to tour URL:', error)
+    }
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -414,6 +441,52 @@ export default function ComingSoonPage() {
             </Card>
           </motion.div>
 
+          {/* 3D Tour Demo Section */}
+          {showTourDemo && tourEmbedUrl && (
+            <motion.div variants={itemVariants} className="mb-16" id="tour-demo">
+              <div className="text-center mb-12">
+                <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                  Experience Our 3D Tours
+                </h3>
+                <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-2">
+                  Try our immersive 3D virtual tour experience
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  हाम्रो ३डी भर्चुअल टुर अनुभव गर्नुहोस्
+                </p>
+              </div>
+
+              <Card className="max-w-6xl mx-auto border-primary/20 bg-card/80 backdrop-blur-sm overflow-hidden">
+                <CardContent className="p-0">
+                  <div className="relative w-full" style={{ paddingBottom: '56.25%' /* 16:9 Aspect Ratio */ }}>
+                    <iframe
+                      src={tourEmbedUrl}
+                      className="absolute top-0 left-0 w-full h-full border-0"
+                      allow="fullscreen; vr; gyroscope; accelerometer; autoplay"
+                      allowFullScreen
+                      loading="lazy"
+                      title="3D Virtual Tour Demo"
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+
+              <motion.div
+                className="text-center mt-6"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+              >
+                <p className="text-sm text-muted-foreground">
+                  Use your mouse or touchscreen to navigate • Click hotspots to move between rooms
+                </p>
+                <p className="text-xs text-muted-foreground mt-1">
+                  माउस वा टचस्क्रिन प्रयोग गरेर नेभिगेट गर्नुहोस् • कोठाहरू बीच सार्न हटस्पटहरूमा क्लिक गर्नुहोस्
+                </p>
+              </motion.div>
+            </motion.div>
+          )}
+
           {/* Key Features Section */}
           <motion.div id="features" variants={itemVariants} className="mb-16">
             <div className="text-center mb-12">
@@ -618,7 +691,7 @@ export default function ComingSoonPage() {
                 Kathmandu, Nepal
               </p>
               <p className="text-sm text-muted-foreground">
-                © 2024 3D Ghar Technology Pvt. Ltd. All rights reserved.
+                © {currentYear} 3D Ghar Technology Pvt. Ltd. All rights reserved.
               </p>
               <p className="text-sm text-muted-foreground mt-2">
                 नेपालीले नेपालीको लागि बनाएको | Built by Nepali, for Nepali

@@ -24,6 +24,7 @@ Required variables:
 
 Optional:
 - `NEXT_PUBLIC_SHOW_TOUR_DEMO` - Set to `true` to show 3D tour demo section
+- `NEXT_PUBLIC_TOUR_EMBED_URL` - The embed URL for your 3D tour (required if `NEXT_PUBLIC_SHOW_TOUR_DEMO` is `true`)
 
 ### 3. Run Development Server
 
@@ -40,6 +41,7 @@ Visit [http://localhost:3000](http://localhost:3000) to see the coming soon page
 - ✅ Email signup form with validation
 - ✅ Countdown timer to January 2026
 - ✅ Key features showcase (12 features)
+- ✅ 3D tour demo section (optional, configurable via environment variables)
 - ✅ Social media links
 - ✅ Mobile-responsive design
 - ✅ Theme-aware styling
@@ -61,7 +63,8 @@ Make sure you have the `coming_soon_signups` table in your Supabase database. Th
 3. Add environment variables in Vercel dashboard:
    - `NEXT_PUBLIC_SUPABASE_URL`
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-   - `NEXT_PUBLIC_SHOW_TOUR_DEMO` (optional)
+   - `NEXT_PUBLIC_SHOW_TOUR_DEMO` (optional, set to `true` to enable)
+   - `NEXT_PUBLIC_TOUR_EMBED_URL` (optional, required if tour demo is enabled)
 4. Deploy!
 
 ### Domain Setup
