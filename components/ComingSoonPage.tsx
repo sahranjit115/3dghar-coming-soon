@@ -119,6 +119,7 @@ export default function ComingSoonPage() {
   // Default Kuula tour URL (can be overridden via environment variable)
   const defaultTourUrl = 'https://kuula.co/share/hzcrM'
   // Enable tour demo by default (can be disabled via NEXT_PUBLIC_SHOW_TOUR_DEMO=false)
+  // Show tour unless explicitly set to 'false'
   const showTourDemo = process.env.NEXT_PUBLIC_SHOW_TOUR_DEMO !== 'false'
   
   // Get tour URL and add slow auto-rotation for Kuula tours
@@ -442,7 +443,7 @@ export default function ComingSoonPage() {
           </motion.div>
 
           {/* 3D Tour Demo Section */}
-          {showTourDemo && tourEmbedUrl && (
+          {tourEmbedUrl && (
             <motion.div variants={itemVariants} className="mb-16" id="tour-demo">
               <div className="text-center mb-12">
                 <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
